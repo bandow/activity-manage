@@ -537,8 +537,8 @@
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date" id="date1">
-									<input id="date-range1-0" type="text"> <em>-</em><input id="date-range1-1" type="text">
+								<div class="date" id="date2">
+									<input id="date-range2-0" type="text"> <em>-</em><input id="date-range2-1" type="text">
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -690,8 +690,8 @@
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date" id="date1">
-									<input id="date-range1-0" type="text"> <em>-</em><input id="date-range1-1" type="text">
+								<div class="date" id="date3">
+									<input id="date-range3-0" type="text"> <em>-</em><input id="date-range3-1" type="text">
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -843,8 +843,8 @@
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date" id="date1">
-									<input id="date-range1-0" type="text"> <em>-</em><input id="date-range1-1" type="text">
+								<div class="date" id="date4">
+									<input id="date-range4-0" type="text"> <em>-</em><input id="date-range4-1" type="text">
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -996,8 +996,8 @@
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date" id="date1">
-									<input id="date-range1-0" type="text"> <em>-</em><input id="date-range1-1" type="text">
+								<div class="date" id="date5">
+									<input id="date-range5-0" type="text"> <em>-</em><input id="date-range5-1" type="text">
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -1336,6 +1336,86 @@
 			{
 				$('#date-range1-0').val(s1);
 				$('#date-range1-1').val(s2);
+			}
+		});
+		$('#date2').dateRangePicker({
+			autoClose: true,
+			format: 'MM-DD',
+			separator: ' to ',
+			language: 'cn',
+			startOfWeek: 'sunday',
+			startDate: new Date(),  //默认今天开始
+	        getValue: function()
+			{
+				if ($('#date-range2-0').val() && $('#date-range2-1').val() )
+					return $('#date-range2-0').val() + ' to ' + $('#date-range2-1').val();
+				else
+					return '';
+			},
+			setValue: function(s,s1,s2)
+			{
+				$('#date-range2-0').val(s1);
+				$('#date-range2-1').val(s2);
+			}
+		});
+		$('#date3').dateRangePicker({
+			autoClose: true,
+			format: 'MM-DD',
+			separator: ' to ',
+			language: 'cn',
+			startOfWeek: 'sunday',
+			startDate: new Date(),  //默认今天开始
+	        getValue: function()
+			{
+				if ($('#date-range3-0').val() && $('#date-range3-1').val() )
+					return $('#date-range3-0').val() + ' to ' + $('#date-range3-1').val();
+				else
+					return '';
+			},
+			setValue: function(s,s1,s2)
+			{
+				$('#date-range3-0').val(s1);
+				$('#date-range3-1').val(s2);
+			}
+		});
+		$('#date4').dateRangePicker({
+			autoClose: true,
+			format: 'MM-DD',
+			separator: ' to ',
+			language: 'cn',
+			startOfWeek: 'sunday',
+			startDate: new Date(),  //默认今天开始
+	        getValue: function()
+			{
+				if ($('#date-range4-0').val() && $('#date-range4-1').val() )
+					return $('#date-range4-0').val() + ' to ' + $('#date-range4-1').val();
+				else
+					return '';
+			},
+			setValue: function(s,s1,s2)
+			{
+				$('#date-range4-0').val(s1);
+				$('#date-range4-1').val(s2);
+			}
+		});
+		$('#date5').dateRangePicker({
+			autoClose: true,
+			format: 'MM-DD',
+			separator: ' to ',
+			language: 'cn',
+			startOfWeek: 'sunday',
+			startDate: new Date(),  //默认今天开始
+	        getValue: function()
+			{
+				if ($('#date-range5-0').val() && $('#date-range5-1').val() )
+					return $('#date-range5-0').val() + ' to ' + $('#date-range5-1').val();
+				else
+					return '';
+			},
+			setValue: function(s,s1,s2)
+			{
+				$('#date-range5-0').val(s1);
+				$('#date-range5-1').val(s2);
 			}
 		});
 	</script>
