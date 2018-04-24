@@ -398,7 +398,7 @@ input {
   font-size: 0;
 }
 
-.page-settings > div .rule-color-content #picker {
+.page-settings > div .rule-color-content .picker {
   margin: 0;
   padding: 0;
   border: 0;
@@ -492,6 +492,18 @@ input {
 
 .banner-rule-variable ul li.on {
   background-color: #ccc;
+}
+
+.banner-rule-variable .btn {
+  margin: 20px auto;
+  display: block;
+  border: 1px solid #ccc;
+  width: 328px;
+  height: 32px;
+  font: 16px/2 "Microsoft Yahei", STHeiti, Tahoma, Simsun, sans-serif;
+  color: #333;
+  text-align: center;
+  background-color: #dadada;
 }
 
 .banner-variable .banner-variable-list .list {
@@ -685,7 +697,7 @@ input {
   font-size: 0;
 }
 
-.rule-variable .rule-variable-colour #picker1 {
+.rule-variable .rule-variable-colour .picker {
   margin: 0;
   padding: 0;
   border: 0;
@@ -1222,6 +1234,18 @@ input {
 }
 
 .footer-variable .btn {
+  margin: 20px auto;
+  display: block;
+  border: 1px solid #ccc;
+  width: 398px;
+  height: 32px;
+  font: 16px/2 "Microsoft Yahei", STHeiti, Tahoma, Simsun, sans-serif;
+  color: #333;
+  text-align: center;
+  background-color: #dadada;
+}
+
+.variable > a {
   margin: 20px auto;
   display: block;
   border: 1px solid #ccc;

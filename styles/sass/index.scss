@@ -218,7 +218,7 @@
             border: 1px solid #ddd;
             font-size: 0;
 
-            #picker {
+            .picker {
                 margin: 0;
                 padding: 0;
                 border: 0;
@@ -313,6 +313,18 @@
             background-color: #ccc;
         }
 
+    }
+
+     .btn {
+        margin: 20px auto;
+        display: block;
+        border: 1px solid #ccc;
+        width: 328px;
+        height: 32px;
+        font: 16px/2 $font-style-base;
+        color: #333;
+        text-align: center;
+        background-color: #dadada;
     }
 
 }
@@ -490,7 +502,7 @@
         border: 1px solid #ddd;
         font-size: 0;
 
-        #picker1 {
+        .picker {
             margin: 0;
             padding: 0;
             border: 0;
@@ -1004,4 +1016,16 @@
         text-align: center;
         background-color: #dadada;
     }
+}
+
+.variable>a{
+    margin: 20px auto;
+    display: block;
+    border: 1px solid #ccc;
+    width: 398px;
+    height: 32px;
+    font: 16px/2 $font-style-base;
+    color: #333;
+    text-align: center;
+    background-color: #dadada;
 }

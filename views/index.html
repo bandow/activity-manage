@@ -69,7 +69,7 @@
 					<div class="background-color">
 						<p>背景颜色</p>
 						<div class="rule-color-content">
-							<input type="text" id="picker">
+							<input type="text" class="picker">
 						</div>
 						<p>（用于背景颜色显示）非必填</p>
 					</div>
@@ -100,21 +100,20 @@
 					<div class="previewer-component">
 						<iframe id="iframe" src="web-index.html" frameborder="0" scrolling="no"></iframe>
 					</div>
-					<div class="banner-rule-variable variable" data-id="1">
+					<div class="banner-rule-variable variable">
 						<h3>banner设置</h3>
 						<p>（备注：建议上传宽度640，高度不限，格式为png或jpg格式）</p>
-						<ul>
+						<ul class="tab-title">
 							<li class="on">banner设置</li>
 							<li>规则设置</li>
 						</ul>
-						<div class="variable-all">
+						<div class="tab-content-box variable-all">
 							<div class="banner-variable" data-id="0">
 								<div class="banner-variable-list"></div>
-								<a class="add-banner-btn" href="javascript:;" onclick="addImg();">
+								<a class="add-banner-btn" href="javascript:;" onclick="addImg(this);">
 									<div class="add"><em></em><em></em></div>
 									<span>添加banner</span>
 								</a>
-								<a class="btn" onclick="bannerSetting(this)" href="javascript:;">保存</a>
 							</div>
 							<div class="rule-variable" data-id="1">
 								<h5>规则弹窗按钮图片</h5>
@@ -130,29 +129,29 @@
 								<p>备注：用于弹窗标题显示</p>
 								<h5>规则弹窗标题颜色</h5>
 								<div class="rule-variable-colour">
-									<input type="text" id="picker1">
+									<input type="text" class="picker">
 								</div>
 								<p>备注：用于弹窗标题颜色显示</p>
 								<h5>规则内容</h5>
-								<div id="ruleText"></div>
+								<div class="newruleText0"></div>
 								<p>备注：建议文字最大字号为14px</p>
-								<a href="javascript:;" onclick="bannerRuleSetting()" class="btn">保存</a>
 							</div>
 						</div>	
+						<a class="btn" onclick="saveBannerSetting(this)" href="javascript:;">保存</a>
 					</div>
 					<div class="decorator-variable variable">
 						<h3>立减/折扣活动设置</h3>
-						<ul>
+						<ul class="tab-title">
 							<li class="on">标题设置</li>
 							<li>专区设置</li>
 							<li>活动码设置</li>
 							<li>预订时间</li>
 							<li>自定义样式</li>
 						</ul>
-						<div class="decorator-variable-list">
+						<div class="tab-content-box decorator-variable-list variable-all">
 							<div class="dvl-title-setting" data-id="0" style="display:block;">
 								<h5>上传标题图片</h5>
-								<div class="upload-img-big" style="    margin: 0;">
+								<div class="upload-img-big" style=" margin:0;">
 									<em></em>
 									<em></em>
 									<input type="file" onchange="preview(this,1048576)" accept="image/gif, image/jpeg" >
@@ -160,7 +159,7 @@
 								</div>
 								<p>（建议选择宽度为640，高度不限，类型为jpg、png格式图片）</p>
 								<h5>活动规则按钮</h5>
-								<div class="upload-img" style="    margin: 0;">
+								<div class="upload-img" style="margin:0;">
 									<em></em>
 									<em></em>
 									<input name="" type="file" onchange="preview(this,1048576)" accept="image/gif, image/jpeg" >
@@ -171,11 +170,10 @@
 								<input class="rule-title" type="text">
 								<h5>规则弹窗标题颜色</h5>
 								<div class="rule-variable-colour">
-									<input type="text" id="newpicker0">
+									<input type="text" class="picker">
 								</div>
 								<h5>活动规则内容</h5>
-								<div id="newruleText0"></div>
-								<a onclick="discountTitleSetting('.decorator-variable','.discount-wrapper',0);" href="javascript:;" class="btn">保存</a>
+								<div class="newruleText1"></div>
 							</div>
 							<div class="dvl-prefecture-setting" data-id="1">
 								<h5>显示城市选择</h5>
@@ -223,16 +221,14 @@
 								<p>（备注：上传图片规格为xxx*xxx，大小不超过xk）</p>
 								<h5>查看更多链接</h5>
 								<input type="text" class="see-more-src">
-								<a class="btn" href="javascript:;" onclick="discountPrefectureSetting('.decorator-variable','.discount-wrapper');">保存</a>
 							</div>
 							<div class="dvl-activity-code-setting" data-id="2">
 								<textarea name="" id="" cols="30" rows="10"></textarea>
-								<a class="btn" href="javascript:;" onclick="discountActivityCodeSetting();">保存</a>
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date" id="date">
-									<input id="date-range0" type="text"> <em>-</em><input id="date-range1" type="text">
+								<div class="date">
+									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -250,59 +246,58 @@
 									<option value="">春节</option>
 									<option value="">元宵夜</option>
 								</select>
-								<a class="btn" href="javascript:;" onclick="discountBookingSetting();">保存</a>
 							</div>
 							<div class="dvl-css-setting" data-id="4">
 								<h5>选择城市按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker30">
+									<input type="text" class="picker picker1">
 								</div>
 								<h5>选择城市字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker40">
+									<input type="text" class="picker picker2">
 								</div>
 								<h5>价格颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker50">
+									<input type="text" class="picker picker3">
 								</div>
 								<h5>酒店名称颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker60">
+									<input type="text" class="picker picker4">
 								</div>
 								<h5>预订按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker70">
+									<input type="text" class="picker picker5">
 								</div>
 								<h5>酒店列表背景颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker80">
+									<input type="text" class="picker picker6">
 								</div>
 								<h5>更多选择按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker90">
+									<input type="text" class="picker picker7">
 								</div>
 								<h5>更多选择按钮边框颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker100">
+									<input type="text" class="picker picker8">
 								</div>
 								<h5>更多选择字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker110">
+									<input type="text" class="picker picker9">
 								</div>
-								<a class="btn" href="javascript:;" onclick="discountColorSetting('.decorator-variable','.discount-wrapper',0);">保存</a>
 							</div>
 						</div>
+						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="decoratorN-variable variable">
 						<h3>立减/折扣活动不限设置</h3>
-						<ul>
+						<ul class="tab-title">
 							<li class="on">标题设置</li>
 							<li>专区设置</li>
 							<li>活动码设置</li>
 							<li>预订时间</li>
 							<li>自定义样式</li>
 						</ul>
-						<div class="decoratorN-variable-list">
+						<div class="tab-content-box decoratorN-variable-list variable-all">
 							<div class="dvl-title-setting" data-id="0" style="display:block;">
 								<h5>上传标题图片</h5>
 								<div class="upload-img-big" style="    margin: 0;">
@@ -324,11 +319,10 @@
 								<input class="rule-title" type="text">
 								<h5>规则弹窗标题颜色</h5>
 								<div class="rule-variable-colour">
-									<input type="text" id="newpicker1">
+									<input type="text" class="picker">
 								</div>
 								<h5>活动规则内容</h5>
-								<div id="newruleText1"></div>
-								<a onclick="discountTitleSetting('.decoratorN-variable','.discountN-wrapper',1);" href="javascript:;" class="btn">保存</a>
+								<div class="newruleText2"></div>
 							</div>
 							<div class="dvl-prefecture-setting" data-id="1">
 								<h5>显示城市选择</h5>
@@ -376,16 +370,14 @@
 								<p>（备注：上传图片规格为xxx*xxx，大小不超过xk）</p>
 								<h5>查看更多链接</h5>
 								<input type="text" class="see-more-src">
-								<a class="btn" href="javascript:;" onclick="discountPrefectureSetting('.decoratorN-variable','.discountN-wrapper');">保存</a>
 							</div>
 							<div class="dvl-activity-code-setting" data-id="2">
 								<textarea name="" id="" cols="30" rows="10"></textarea>
-								<a class="btn" href="javascript:;" onclick="discountActivityCodeSetting();">保存</a>
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date" id="date1">
-									<input id="date-range1-0" type="text"> <em>-</em><input id="date-range1-1" type="text">
+								<div class="date">
+									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -408,54 +400,54 @@
 							<div class="dvl-css-setting" data-id="4">
 								<h5>选择城市按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker31">
+									<input type="text" class="picker picker1">
 								</div>
 								<h5>选择城市字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker41">
+									<input type="text" class="picker picker2">
 								</div>
 								<h5>价格颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker51">
+									<input type="text" class="picker picker3">
 								</div>
 								<h5>酒店名称颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker61">
+									<input type="text" class="picker picker4">
 								</div>
 								<h5>预订按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker71">
+									<input type="text" class="picker picker5">
 								</div>
 								<h5>酒店列表背景颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker81">
+									<input type="text" class="picker picker6">
 								</div>
 								<h5>更多选择按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker91">
+									<input type="text" class="picker picker7">
 								</div>
 								<h5>更多选择按钮边框颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker101">
+									<input type="text" class="picker picker8">
 								</div>
 								<h5>更多选择字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker111">
+									<input type="text" class="picker picker9">
 								</div>
-								<a class="btn" href="javascript:;" onclick="discountColorSetting('.decoratorN-variable','.discountN-wrapper',1);">保存</a>
 							</div>
 						</div>
+						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="secondKill-variable variable">
 						<h3>一口价设置</h3>
-						<ul>
+						<ul class="tab-title">
 							<li class="on">标题设置</li>
 							<li>专区设置</li>
 							<li>活动码设置</li>
 							<li>预订时间</li>
 							<li>自定义样式</li>
 						</ul>
-						<div class="secondKill-variable-list">
+						<div class="tab-content-box secondKill-variable-list">
 							<div class="dvl-title-setting" data-id="0" style="display:block;">
 								<h5>上传标题图片</h5>
 								<div class="upload-img-big" style="margin: 0;">
@@ -477,11 +469,10 @@
 								<input class="rule-title" type="text">
 								<h5>规则弹窗标题颜色</h5>
 								<div class="rule-variable-colour">
-									<input type="text" id="newpicker2">
+									<input type="text" class="picker"> 
 								</div>
 								<h5>活动规则内容</h5>
-								<div id="newruleText2"></div>
-								<a onclick="discountTitleSetting('.secondKill-variable','.secondKill-wrapper',2);" href="javascript:;" class="btn">保存</a>
+								<div class="newruleText3"></div>
 							</div>
 							<div class="dvl-prefecture-setting" data-id="1">
 								<h5>显示城市选择</h5>
@@ -529,16 +520,14 @@
 								<p>（备注：上传图片规格为xxx*xxx，大小不超过xk）</p>
 								<h5>查看更多链接</h5>
 								<input type="text" class="see-more-src">
-								<a class="btn" href="javascript:;" onclick="discountPrefectureSetting('secondKill-variable','.secondKill-wrapper');">保存</a>
 							</div>
 							<div class="dvl-activity-code-setting" data-id="2">
 								<textarea name="" id="" cols="30" rows="10"></textarea>
-								<a class="btn" href="javascript:;" onclick="discountActivityCodeSetting();">保存</a>
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date" id="date2">
-									<input id="date-range2-0" type="text"> <em>-</em><input id="date-range2-1" type="text">
+								<div class="date">
+									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -556,59 +545,58 @@
 									<option value="">春节</option>
 									<option value="">元宵夜</option>
 								</select>
-								<a class="btn" href="javascript:;" onclick="discountBookingSetting();">保存</a>
 							</div>
 							<div class="dvl-css-setting" data-id="4">
 								<h5>选择城市按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker32">
+									<input type="text" class="picker picker1" >
 								</div>
 								<h5>选择城市字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker42">
+									<input type="text" class="picker picker2">
 								</div>
 								<h5>价格颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker52">
+									<input type="text" class="picker picker3">
 								</div>
 								<h5>酒店名称颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker62">
+									<input type="text" class="picker picker4">
 								</div>
 								<h5>预订按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker72">
+									<input type="text" class="picker picker5">
 								</div>
 								<h5>酒店列表背景颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker82">
+									<input type="text" class="picker picker6">
 								</div>
 								<h5>更多选择按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker92">
+									<input type="text" class="picker picker7">
 								</div>
 								<h5>更多选择按钮边框颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker102">
+									<input type="text" class="picker picker8">
 								</div>
 								<h5>更多选择字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker112">
+									<input type="text" class="picker picker9">
 								</div>
-								<a class="btn" href="javascript:;" onclick="discountColorSetting('.secondKill-variable','.secondKill-wrapper',2);">保存</a>
 							</div>
 						</div>
+						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="secondKillN-variable variable">
 						<h3>一口价设置不限</h3>
-						<ul>
+						<ul class="tab-title">
 							<li class="on">标题设置</li>
 							<li>专区设置</li>
 							<li>活动码设置</li>
 							<li>预订时间</li>
 							<li>自定义样式</li>
 						</ul>
-						<div class="secondKillN-variable-list">
+						<div class="tab-content-box secondKillN-variable-list">
 							<div class="dvl-title-setting" data-id="0" style="display:block;">
 								<h5>上传标题图片</h5>
 								<div class="upload-img-big" style="margin: 0;">
@@ -630,11 +618,10 @@
 								<input class="rule-title" type="text">
 								<h5>规则弹窗标题颜色</h5>
 								<div class="rule-variable-colour">
-									<input type="text" id="newpicker3">
+									<input type="text" class="picker">
 								</div>
 								<h5>活动规则内容</h5>
-								<div id="newruleText3"></div>
-								<a onclick="discountTitleSetting('.secondKillN-variable','.secondKillN-wrapper',3);" href="javascript:;" class="btn">保存</a>
+								<div class="newruleText4"></div>
 							</div>
 							<div class="dvl-prefecture-setting" data-id="1">
 								<h5>显示城市选择</h5>
@@ -682,16 +669,14 @@
 								<p>（备注：上传图片规格为xxx*xxx，大小不超过xk）</p>
 								<h5>查看更多链接</h5>
 								<input type="text" class="see-more-src">
-								<a class="btn" href="javascript:;" onclick="discountPrefectureSetting('secondKillN-variable','.secondKillN-wrapper');">保存</a>
 							</div>
 							<div class="dvl-activity-code-setting" data-id="2">
 								<textarea name="" id="" cols="30" rows="10"></textarea>
-								<a class="btn" href="javascript:;" onclick="discountActivityCodeSetting();">保存</a>
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date" id="date3">
-									<input id="date-range3-0" type="text"> <em>-</em><input id="date-range3-1" type="text">
+								<div class="date">
+									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -709,59 +694,58 @@
 									<option value="">春节</option>
 									<option value="">元宵夜</option>
 								</select>
-								<a class="btn" href="javascript:;" onclick="discountBookingSetting();">保存</a>
 							</div>
 							<div class="dvl-css-setting" data-id="4">
 								<h5>选择城市按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker33">
+									<input type="text" class="picker picker1">
 								</div>
 								<h5>选择城市字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker43">
+									<input type="text" class="picker picker2">
 								</div>
 								<h5>价格颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker53">
+									<input type="text" class="picker picker3">
 								</div>
 								<h5>酒店名称颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker63">
+									<input type="text" class="picker picker4">
 								</div>
 								<h5>预订按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker73">
+									<input type="text" class="picker picker5">
 								</div>
 								<h5>酒店列表背景颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker83">
+									<input type="text" class="picker picker6">
 								</div>
 								<h5>更多选择按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker93">
+									<input type="text" class="picker picker7">
 								</div>
 								<h5>更多选择按钮边框颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker103">
+									<input type="text" class="picker picker8">
 								</div>
 								<h5>更多选择字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker113">
+									<input type="text" class="picker picker9">
 								</div>
-								<a class="btn" href="javascript:;" onclick="discountColorSetting('.secondKillN-variable','.secondKillN-wrapper',3);">保存</a>
 							</div>
 						</div>
+						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="themeRoom-variable variable">
 						<h3>主题房设置</h3>
-						<ul>
+						<ul class="tab-title">
 							<li class="on">标题设置</li>
 							<li>专区设置</li>
 							<li>活动码设置</li>
 							<li>预订时间</li>
 							<li>自定义样式</li>
 						</ul>
-						<div class="themeRoom-variable-list">
+						<div class="tab-content-box themeRoom-variable-list">
 							<div class="dvl-title-setting" data-id="0" style="display:block;">
 								<h5>上传标题图片</h5>
 								<div class="upload-img-big" style="margin: 0;">
@@ -783,11 +767,10 @@
 								<input class="rule-title" type="text">
 								<h5>规则弹窗标题颜色</h5>
 								<div class="rule-variable-colour">
-									<input type="text" id="newpicker4">
+									<input type="text" class="picker">
 								</div>
 								<h5>活动规则内容</h5>
-								<div id="newruleText4"></div>
-								<a onclick="discountTitleSetting('.themeRoom-variable','.themeRoom-wrapper',4);" href="javascript:;" class="btn">保存</a>
+								<div class="newruleText5"></div>
 							</div>
 							<div class="dvl-prefecture-setting" data-id="1">
 								<h5>显示城市选择</h5>
@@ -835,16 +818,14 @@
 								<p>（备注：上传图片规格为xxx*xxx，大小不超过xk）</p>
 								<h5>查看更多链接</h5>
 								<input type="text" class="see-more-src">
-								<a class="btn" href="javascript:;" onclick="discountPrefectureSetting('themeRoom-variable','.themeRoom-wrapper');">保存</a>
 							</div>
 							<div class="dvl-activity-code-setting" data-id="2">
 								<textarea name="" id="" cols="30" rows="10"></textarea>
-								<a class="btn" href="javascript:;" onclick="discountActivityCodeSetting();">保存</a>
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date" id="date4">
-									<input id="date-range4-0" type="text"> <em>-</em><input id="date-range4-1" type="text">
+								<div class="date">
+									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -867,54 +848,54 @@
 							<div class="dvl-css-setting" data-id="4">
 								<h5>选择城市按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker34">
+									<input type="text" class="picker picker1">
 								</div>
 								<h5>选择城市字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker44">
+									<input type="text" class="picker picker2">
 								</div>
 								<h5>价格颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker54">
+									<input type="text" class="picker picker3">
 								</div>
 								<h5>酒店名称颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker64">
+									<input type="text" class="picker picker4">
 								</div>
 								<h5>预订按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker74">
+									<input type="text" class="picker picker5">
 								</div>
 								<h5>酒店列表背景颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker84">
+									<input type="text" class="picker picker6">
 								</div>
 								<h5>更多选择按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker94">
+									<input type="text" class="picker picker7">
 								</div>
 								<h5>更多选择按钮边框颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker104">
+									<input type="text" class="picker picker8">
 								</div>
 								<h5>更多选择字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker114">
+									<input type="text" class="picker picker9">
 								</div>
-								<a class="btn" href="javascript:;" onclick="discountColorSetting('.themeRoom-variable','.themeRoom-wrapper',4);">保存</a>
 							</div>
 						</div>
+						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="themeRoomN-variable variable">
 						<h3>主题房不限设置</h3>
-						<ul>
+						<ul class="tab-title">
 							<li class="on">标题设置</li>
 							<li>专区设置</li>
 							<li>活动码设置</li>
 							<li>预订时间</li>
 							<li>自定义样式</li>
 						</ul>
-						<div class="themeRoomN-variable-list">
+						<div class="tab-content-box themeRoomN-variable-list">
 							<div class="dvl-title-setting" data-id="0" style="display:block;">
 								<h5>上传标题图片</h5>
 								<div class="upload-img-big" style="margin: 0;">
@@ -936,11 +917,10 @@
 								<input class="rule-title" type="text">
 								<h5>规则弹窗标题颜色</h5>
 								<div class="rule-variable-colour">
-									<input type="text" id="newpicker5">
+									<input type="text" class="picker">
 								</div>
 								<h5>活动规则内容</h5>
-								<div id="newruleText5"></div>
-								<a onclick="discountTitleSetting('.themeRoomN-variable','.themeRoomN-wrapper',5);" href="javascript:;" class="btn">保存</a>
+								<div class="newruleText6"></div>
 							</div>
 							<div class="dvl-prefecture-setting" data-id="1">
 								<h5>显示城市选择</h5>
@@ -988,16 +968,14 @@
 								<p>（备注：上传图片规格为xxx*xxx，大小不超过xk）</p>
 								<h5>查看更多链接</h5>
 								<input type="text" class="see-more-src">
-								<a class="btn" href="javascript:;" onclick="discountPrefectureSetting('themeRoomN-variable','.themeRoomN-wrapper');">保存</a>
 							</div>
 							<div class="dvl-activity-code-setting" data-id="2">
 								<textarea name="" id="" cols="30" rows="10"></textarea>
-								<a class="btn" href="javascript:;" onclick="discountActivityCodeSetting();">保存</a>
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date" id="date5">
-									<input id="date-range5-0" type="text"> <em>-</em><input id="date-range5-1" type="text">
+								<div class="date">
+									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -1015,48 +993,47 @@
 									<option value="">春节</option>
 									<option value="">元宵夜</option>
 								</select>
-								<a class="btn" href="javascript:;" onclick="discountBookingSetting();">保存</a>
 							</div>
 							<div class="dvl-css-setting" data-id="4">
 								<h5>选择城市按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker35">
+									<input type="text" class="picker picker1">
 								</div>
 								<h5>选择城市字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker45">
+									<input type="text" class="picker picker2">
 								</div>
 								<h5>价格颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker55">
+									<input type="text" class="picker picker3">
 								</div>
 								<h5>酒店名称颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker65">
+									<input type="text" class="picker picker4">
 								</div>
 								<h5>预订按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker75">
+									<input type="text" class="picker picker5">
 								</div>
 								<h5>酒店列表背景颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker85">
+									<input type="text" class="picker picker6">
 								</div>
 								<h5>更多选择按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker95">
+									<input type="text" class="picker picker7">
 								</div>
 								<h5>更多选择按钮边框颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker105">
+									<input type="text" class="picker picker8">
 								</div>
 								<h5>更多选择字体颜色</h5>
 								<div class="dvl-css-setting-colour">
-									<input type="text" id="picker115">
+									<input type="text" class="picker picker9">
 								</div>
-								<a class="btn" href="javascript:;" onclick="discountColorSetting('.themeRoomN-variable','.themeRoomN-wrapper',5);">保存</a>
 							</div>
 						</div>
+						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="one-img-variable variable">
 						<h3>一图模块设置</h3>
@@ -1079,17 +1056,17 @@
 								<input class="wx-src" type="text">
 								<h5>APP跳转链接</h5>
 								<input class="app-scr" type="text">
-								<a href="javascript:;" class="btn" onclick="oneImgSetting();">保存</a>
+								<a href="javascript:;" class="btn" onclick="oneImgSetting(this);">保存</a>
 							</div>
 						</div>
 					</div>
 					<div class="two-img-variable variable">
 						<h3>二图模块设置</h3>
-						<ul>
+						<ul class="tab-title">
 							<li class="on">标题设置</li>
 							<li>图片设置</li>
 						</ul>
-						<div class="two-img-variable-list">
+						<div class="tab-content-box two-img-variable-list">
 							<div class="oivl-setting rule-variable" data-id="0" style="display:block;">
 								<h5>上传标题图片</h5>
 								<div class="upload-img-big title-img" style="margin:0;">
@@ -1111,11 +1088,10 @@
 								<input class="two-img-rule-tilte" type="text">
 								<h5>规则弹窗标题颜色</h5>
 								<div class="rule-variable-colour">
-									<input type="text" id="picker12">
+									<input type="text" class="picker">
 								</div>
 								<h5>活动规则内容</h5>
-								<div id="ruleText3"></div>
-								<a href="javascript:;" class="btn" onclick="twoTitleSetting();">保存</a>
+								<div class="newruleText7"></div>
 							</div>
 							<div class="oivl-setting" data-id="1">
 								<h5>显示渠道</h5>
@@ -1147,9 +1123,9 @@
 								<input type="text" class="wxr">
 								<h5>APP跳转链接</h5>
 								<input type="text" class="appr">
-								<a href="javascript:;" class="btn" onclick="twoImgSetting();">保存</a>
 							</div>
 						</div>
+						<a href="javascript:;" class="btn" onclick="saveTwoSetting(this);">保存</a>
 					</div>
 					<div class="footer-variable variable">
 						<h3>底部栏设置</h3>
@@ -1161,14 +1137,13 @@
 							<div class="add-img"></div>
 						</div>
 						<p>图片大小不超过50K</p>
-						<a href="javascript:;" class="btn" onclick="footerSetting();">保存</a>
+						<a href="javascript:;" class="btn" onclick="footerSetting(this);">保存</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script src="../plugins/jquery/jquery-3.1.1.min.js"></script>
-	<!-- <script src="../plugins/jquery/jquery-1.10.1.min.js"></script> -->
 	<script src="../scripts/common.js"></script>
 	<script src="../plugins/colpick/colpick.js"></script>
 	<script src="../scripts/activity-manage.js"></script>
@@ -1189,10 +1164,8 @@
 				$(this).parent().next().hide();
 			}
 		});
-		/**
-		 * 选择颜色控件
-		 */
-		$('#picker').colpick({
+		//基础设置初始颜色
+		$(".picker").colpick({
 			layout: 'hex',
 			submit: 0,
 			colorScheme: 'dark',
@@ -1204,49 +1177,7 @@
 		}).keyup(function() {
 			$(this).colpickSetColor(this.value);
 		});
-		$('#picker1,#picker30,#picker40,#picker50,#picker60,#picker70,#picker80,#picker90,#picker100,#picker110,#picker31,#picker41,#picker51,#picker61,#picker71,#picker81,#picker91,#picker101,#picker111,#picker32,#picker42,#picker52,#picker62,#picker72,#picker82,#picker92,#picker102,#picker112,#picker33,#picker43,#picker53,#picker63,#picker73,#picker83,#picker93,#picker103,#picker113,#picker34,#picker44,#picker54,#picker64,#picker74,#picker84,#picker94,#picker104,#picker114,#picker35,#picker45,#picker55,#picker65,#picker75,#picker85,#picker95,#picker105,#picker115,#picker12,#newpicker0,#newpicker1,#newpicker2,#newpicker3,#newpicker4,#newpicker5').colpick({
-			layout: 'hex',
-			submit: 0,
-			colorScheme: 'dark',
-			onChange: function(hsb, hex, rgb, el, bySetColor) {
-				$(el).css('border-color', '#' + hex);
-				// Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
-				if (!bySetColor) $(el).val('#' + hex);
-			}
-		}).keyup(function() {
-			$(this).colpickSetColor(this.value);
-		});
-		/**
-		*模块 数组 方法
-		*/
-		var moduleObject=[
-		 	{id:1,moduleFun:bannerSettings},
-			{id:2,moduleFun:discount},
-			{id:3,moduleFun:discountN},
-			{id:4,moduleFun:secondKill},
-			{id:5,moduleFun:secondKillN},
-			{id:6,moduleFun:themeRoom},
-			{id:7,moduleFun:themeRoomN},
-			{id:8,moduleFun:oneImg},
-			{id:9,moduleFun:twoImg},
-			{id:10,moduleFun:footerColumn}		 
-		]		
-		$(".decorator-side-bar .list dd").on("click",function(){
-			var dataId=parseInt($(this).attr('data-id'));
-			moduleObject.map(function(item){	
-				if(item.id==dataId){
-					item.moduleFun();
-				}
-			});
-			//排序
-			var wrapperAddId=$iframe.contents().find(".wrapper>div");
-			wrapperAddId.map(function(index,el){
-				$(el).attr("data-id",index);	
-			});
-			
-			//获取warpper高度
-			setHeight();
-		})	
+
 		/**
 		*banner设置 添加图片
 		*/
@@ -1255,169 +1186,33 @@
 		*规则设置 文本编辑器
 		*/
 		var E = window.wangEditor
-		var editor2 = new E('#ruleText')
+
+		var editor0 = new E('.newruleText0')
+		editor0.create()
+
+		var editor1 = new E('.newruleText1')
+		editor1.create()
+
+		var editor2 = new E('.newruleText2')
 		editor2.create()
-		// var editor1 = new E('#ruleText1')
-		// editor1.create()
-		// var editor4 = new E('#ruleText2')
-		// editor4.create()
-		var editor5 = new E('#ruleText3')
+
+		var editor3 = new E('.newruleText3')
+		editor3.create()
+
+		var editor4 = new E('.newruleText4')
+		editor4.create()
+
+		var editor5 = new E('.newruleText5')
 		editor5.create()
 
+		var editor6 = new E('.newruleText6')
+		editor6.create()
 
-		var newEditor0 = new E('#newruleText0')
-		newEditor0.create();
-
-		var newEditor1 = new E('#newruleText1')
-		newEditor1.create();
-
-		var newEditor2 = new E('#newruleText2')
-		newEditor2.create();
-
-		var newEditor3 = new E('#newruleText3')
-		newEditor3.create();
-
-		var newEditor4 = new E('#newruleText4')
-		newEditor4.create();
-
-		var newEditor5 = new E('#newruleText5')
-		newEditor5.create();
+		var editor7 = new E('.newruleText7')
+		editor7.create()
 
 		/***banner设置 切换*/
-		tabSwitch('.banner-rule-variable ul li','.variable-all>div')	
-		/**立减/折扣活动设置 切换*/
-		tabSwitch('.decorator-variable > ul li','.decorator-variable-list>div');
-		tabSwitch('.decoratorN-variable > ul li','.decoratorN-variable-list>div');
-		/**一口价设置 切换*/
-		tabSwitch('.secondKill-variable > ul li','.secondKill-variable-list>div');
-		tabSwitch('.secondKillN-variable > ul li','.secondKillN-variable-list>div');
-		/**主题房设置 切换*/
-		tabSwitch('.themeRoom-variable > ul li','.themeRoom-variable-list>div');
-		tabSwitch('.themeRoomN-variable > ul li','.themeRoomN-variable-list>div');
-		/***一图二图设置 切换*/
-		tabSwitch('.one-img-variable > ul li','.one-img-variable-list>div');
-		tabSwitch('.two-img-variable > ul li','.two-img-variable-list>div');
-		// 日历
-		$('#date').dateRangePicker({
-			autoClose: true,
-			format: 'MM-DD',
-			separator: ' to ',
-			language: 'cn',
-			startOfWeek: 'sunday',
-			startDate: new Date(),  //默认今天开始
-	        getValue: function()
-			{
-				if ($('#date-range0').val() && $('#date-range1').val() )
-					return $('#date-range0').val() + ' to ' + $('#date-range1').val();
-				else
-					return '';
-			},
-			setValue: function(s,s1,s2)
-			{
-				$('#date-range0').val(s1);
-				$('#date-range1').val(s2);
-			}
-		});
-		$('#date1').dateRangePicker({
-			autoClose: true,
-			format: 'MM-DD',
-			separator: ' to ',
-			language: 'cn',
-			startOfWeek: 'sunday',
-			startDate: new Date(),  //默认今天开始
-	        getValue: function()
-			{
-				if ($('#date-range1-0').val() && $('#date-range1-1').val() )
-					return $('#date-range1-0').val() + ' to ' + $('#date-range1-1').val();
-				else
-					return '';
-			},
-			setValue: function(s,s1,s2)
-			{
-				$('#date-range1-0').val(s1);
-				$('#date-range1-1').val(s2);
-			}
-		});
-		$('#date2').dateRangePicker({
-			autoClose: true,
-			format: 'MM-DD',
-			separator: ' to ',
-			language: 'cn',
-			startOfWeek: 'sunday',
-			startDate: new Date(),  //默认今天开始
-	        getValue: function()
-			{
-				if ($('#date-range2-0').val() && $('#date-range2-1').val() )
-					return $('#date-range2-0').val() + ' to ' + $('#date-range2-1').val();
-				else
-					return '';
-			},
-			setValue: function(s,s1,s2)
-			{
-				$('#date-range2-0').val(s1);
-				$('#date-range2-1').val(s2);
-			}
-		});
-		$('#date3').dateRangePicker({
-			autoClose: true,
-			format: 'MM-DD',
-			separator: ' to ',
-			language: 'cn',
-			startOfWeek: 'sunday',
-			startDate: new Date(),  //默认今天开始
-	        getValue: function()
-			{
-				if ($('#date-range3-0').val() && $('#date-range3-1').val() )
-					return $('#date-range3-0').val() + ' to ' + $('#date-range3-1').val();
-				else
-					return '';
-			},
-			setValue: function(s,s1,s2)
-			{
-				$('#date-range3-0').val(s1);
-				$('#date-range3-1').val(s2);
-			}
-		});
-		$('#date4').dateRangePicker({
-			autoClose: true,
-			format: 'MM-DD',
-			separator: ' to ',
-			language: 'cn',
-			startOfWeek: 'sunday',
-			startDate: new Date(),  //默认今天开始
-	        getValue: function()
-			{
-				if ($('#date-range4-0').val() && $('#date-range4-1').val() )
-					return $('#date-range4-0').val() + ' to ' + $('#date-range4-1').val();
-				else
-					return '';
-			},
-			setValue: function(s,s1,s2)
-			{
-				$('#date-range4-0').val(s1);
-				$('#date-range4-1').val(s2);
-			}
-		});
-		$('#date5').dateRangePicker({
-			autoClose: true,
-			format: 'MM-DD',
-			separator: ' to ',
-			language: 'cn',
-			startOfWeek: 'sunday',
-			startDate: new Date(),  //默认今天开始
-	        getValue: function()
-			{
-				if ($('#date-range5-0').val() && $('#date-range5-1').val() )
-					return $('#date-range5-0').val() + ' to ' + $('#date-range5-1').val();
-				else
-					return '';
-			},
-			setValue: function(s,s1,s2)
-			{
-				$('#date-range5-0').val(s1);
-				$('#date-range5-1').val(s2);
-			}
-		});
+		tabSwitch('.variable > .tab-title li','.tab-content-box > div')	
 	</script>
 </body>
 </html>
