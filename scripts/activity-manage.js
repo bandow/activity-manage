@@ -65,18 +65,26 @@ function runModuleFun(dataId,cloneModule){
  * @param {number} maxSize - 图片最大值 B单位
  */
 function preview(file, maxSize) {
-	var maxFileSize;
+	var maxFileSize,
+		extention = file.value.substring(file.value.lastIndexOf(".")+1);//获取图片截取
 	if (!maxSize) {
 		maxFileSize = 1024 * 1024 * 2;
 	} else {
 		maxFileSize = maxSize;
 	}
+
 	if (file.files && file.files[0]) {
 		var fileSize = file.files[0].size;
 		if (fileSize > maxFileSize) {
 			alert('上传的文件不能超过' + countFileSize(maxFileSize, 0));
 			return;
 		}
+		//console.log(extention);
+		//判断是不是图片格式
+		if(extention!="bmp"&&extention!="jpg"&&extention!="jpeg"&&extention!="png"&&extention!="gif"){
+	    	alert('上传的图片格式不为.jpg,.bmp,.gif,.png');
+			return;
+	    }
 		var reader = new FileReader();
 		reader.onload = function(evt) {
 			// console.log(file.nextElementSibling);
@@ -125,15 +133,15 @@ function setHeight() {
  * 复制对应编辑框
  **/
 function copyEditBox(classString,dataId,copyFlag){
-	console.log(dataId)
-	console.log('isIframe:',isIframe());
+	// console.log(dataId)
+	// console.log('isIframe:',isIframe());
 	var classBoj=isIframe()==true ? parent.$(classString) : $(classString),
 	    editObjFirst=$(classBoj)[0],
 	    editObjLength=$(classBoj).length,
 	    editObjAfter=$(classBoj).eq(editObjLength-1),
 	    cloneEdit=null;
 
-        console.log(prevEditObj);
+        // console.log(prevEditObj);
 	    if(copyFlag){
 	    	//复制
 	    	var prevEditObj = isIframe()==true ? parent.$(classString+'[data-id='+(dataId-1)+']') : $(classString+'[data-id='+(dataId-1)+']');
