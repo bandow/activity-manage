@@ -1213,6 +1213,51 @@
 
 		/***banner设置 切换*/
 		tabSwitch('.variable > .tab-title li','.tab-content-box > div')	
+
+		var date=$('.date'),
+		dateStart=date.find(".date-start"),
+		dateEnd=date.find(".date-end");
+		date.dateRangePicker({
+			autoClose: true,
+			format: 'MM-DD',
+			separator: ' to ',
+			language: 'cn',
+			startOfWeek: 'sunday',
+			startDate: new Date(),  //默认今天开始
+	        getValue: function()
+			{
+				if (dateStart.val() && dateEnd.val() )
+					return dateStart.val() + ' to ' +dateEnd.val();
+				else
+					return '';
+			},
+			setValue: function(s,s1,s2)
+			{
+				dateStart.val(s1);
+				dateEnd.val(s2);
+			}
+		});
+
+
+
+
+		window.onload=function(){		
+			try { 
+				bannerSettings(0,1);	
+			} catch(err) {	
+				edit(".banner-rule-variable[data-id='0']");	
+				$(".banner-rule-variable[data-id='0']").show();
+				$(".banner-rule-variable[data-id='0']").find(".rule-tilte").val("123");
+				saveBannerSetting($(".banner-rule-variable[data-id='0']").find(".btn"));
+				discount(1,2)
+				edit(".decorator-variable[data-id='1']");	
+				$(".decorator-variable[data-id='1']").show();
+				$(".decorator-variable[data-id='1']").find(".w-e-text p").text("111");
+				$(".decorator-variable[data-id='1']").find(".rule-title").val("2222");
+				saveBannerSetting($(".decorator-variable[data-id='1']").find(".btn"));
+			}
+			setHeight()
+		}
 	</script>
 </body>
 </html>

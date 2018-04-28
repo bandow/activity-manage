@@ -154,7 +154,7 @@ function copyEditBox(classString,dataId,copyFlag){
 
 		$(cloneEdit).attr("data-id",dataId);
 		editObjAfter.after(cloneEdit);
-
+		
 
 	//初始化选择颜色控件
     var picker=isIframe()==true ? parent.$(cloneEdit).find('.picker') : $(cloneEdit).find('.picker');
@@ -170,6 +170,7 @@ function copyEditBox(classString,dataId,copyFlag){
 	}).keyup(function() {
 		$(this).colpickSetColor(this.value);
 	});
+
 	//日历
 	var date=isIframe()==true ? parent.$(cloneEdit).find('.date') : $(cloneEdit).find('.date'),
 		dateStart=date.find(".date-start"),
@@ -194,6 +195,10 @@ function copyEditBox(classString,dataId,copyFlag){
 			dateEnd.val(s2);
 		}
 	});
+
+
+
+
 }
 
 /**
@@ -270,9 +275,11 @@ function bannerSettings(dataId,moduleUniqueId,cloneModule) {
 			'<div class="rule-box"></div>' +
 			'</div>';	
 		addModuleWrapper(html);	
+
 	}
 	//复制对应编辑框
 	copyEditBox(bannerCls,dataId,copyFlag);
+
 }
 
 function discount(dataId,moduleUniqueId,cloneModule) {
