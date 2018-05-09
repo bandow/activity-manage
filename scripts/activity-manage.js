@@ -158,46 +158,48 @@ function copyEditBox(classString,dataId,copyFlag){
 
 	//初始化选择颜色控件
     var picker=isIframe()==true ? parent.$(cloneEdit).find('.picker') : $(cloneEdit).find('.picker');
-	picker.colpick({
-		layout: 'hex',
-		submit: 0,
-		colorScheme: 'dark',
-		onChange: function(hsb, hex, rgb, el, bySetColor) {
-			$(el).css('border-color', '#' + hex);
-			// Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
-			if (!bySetColor) $(el).val('#' + hex);
-		}
-	}).keyup(function() {
-		$(this).colpickSetColor(this.value);
-	});
+    if(picker.length!=0){
+	 	picker.colpick({
+			layout: 'hex',
+			submit: 0,
+			colorScheme: 'dark',
+			onChange: function(hsb, hex, rgb, el, bySetColor) {
+				$(el).css('border-color', '#' + hex);
+				// Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
+				if (!bySetColor) $(el).val('#' + hex);
+			}
+		}).keyup(function() {
+			$(this).colpickSetColor(this.value);
+		});   	
+    }
+
 
 	//日历
 	var date=isIframe()==true ? parent.$(cloneEdit).find('.date') : $(cloneEdit).find('.date'),
 		dateStart=date.find(".date-start"),
 		dateEnd=date.find(".date-end");
-	date.dateRangePicker({
-		autoClose: true,
-		format: 'MM-DD',
-		separator: ' to ',
-		language: 'cn',
-		startOfWeek: 'sunday',
-		startDate: new Date(),  //默认今天开始
-        getValue: function()
-		{
-			if (dateStart.val() && dateEnd.val() )
-				return dateStart.val() + ' to ' +dateEnd.val();
-			else
-				return '';
-		},
-		setValue: function(s,s1,s2)
-		{
-			dateStart.val(s1);
-			dateEnd.val(s2);
-		}
-	});
-
-
-
+	if(date.length!=0){
+		date.dateRangePicker({
+			autoClose: true,
+			format: 'MM-DD',
+			separator: ' to ',
+			language: 'cn',
+			startOfWeek: 'sunday',
+			startDate: new Date(),  //默认今天开始
+	        getValue: function()
+			{
+				if (dateStart.val() && dateEnd.val() )
+					return dateStart.val() + ' to ' +dateEnd.val();
+				else
+					return '';
+			},
+			setValue: function(s,s1,s2)
+			{
+				dateStart.val(s1);
+				dateEnd.val(s2);
+			}
+		});		
+	}	
 
 }
 
@@ -689,7 +691,7 @@ function settingPreserve() {
 	var settingRusult = {
 		settingName: $(".page-name").find("input").val(),
 		bgPicture: $(".background-picture").find(".add-img img").attr("src"),
-		bgColour: $("#picker").val(),
+		bgColour: $(".picker").val(),
 		shareName: $(".share-name").find("input").val(),
 		shareCopy: $(".share-copy").find("input").val(),
 		shareImg: $(".share-picture").find(".add-img").html()

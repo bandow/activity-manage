@@ -1240,22 +1240,19 @@
 
 
 
-
+        //有数据之后
 		window.onload=function(){		
-			try { 
-				bannerSettings(0,1);	
-			} catch(err) {	
-				edit(".banner-rule-variable[data-id='0']");	
-				$(".banner-rule-variable[data-id='0']").show();
-				$(".banner-rule-variable[data-id='0']").find(".rule-tilte").val("123");
-				saveBannerSetting($(".banner-rule-variable[data-id='0']").find(".btn"));
-				discount(1,2)
-				edit(".decorator-variable[data-id='1']");	
-				$(".decorator-variable[data-id='1']").show();
-				$(".decorator-variable[data-id='1']").find(".w-e-text p").text("111");
-				$(".decorator-variable[data-id='1']").find(".rule-title").val("2222");
-				saveBannerSetting($(".decorator-variable[data-id='1']").find(".btn"));
-			}
+			bannerSettings(0,1);	
+			edit(".banner-rule-variable[data-id='0']");	
+			$(".banner-rule-variable[data-id='0']").show();
+			$(".banner-rule-variable[data-id='0']").find(".rule-tilte").val("123");
+			saveBannerSetting($(".banner-rule-variable[data-id='0']").find(".btn"));
+			discount(1,2)
+			edit(".decorator-variable[data-id='1']");	
+			$(".decorator-variable[data-id='1']").show();
+			$(".decorator-variable[data-id='1']").find(".w-e-text p").text("111");
+			$(".decorator-variable[data-id='1']").find(".rule-title").val("2222");
+			saveBannerSetting($(".decorator-variable[data-id='1']").find(".btn"));
 			setHeight()
 		}
 	</script>
