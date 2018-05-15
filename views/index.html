@@ -145,7 +145,7 @@
 							<li class="on">标题设置</li>
 							<li>专区设置</li>
 							<li>活动码设置</li>
-							<li>预订时间</li>
+							<li style='display:none'>预订时间</li>
 							<li>自定义样式</li>
 						</ul>
 						<div class="tab-content-box decorator-variable-list variable-all">
@@ -189,12 +189,13 @@
 									<option value="3">佛山</option>
 								</select>
 								<h5>酒店显示数量</h5>
-								<select name="" id="">
+								<input type="text" class="hotel-show-num">
+								<!-- <select name="" id="">
 									<option value="">2</option>
 									<option value="">4</option>
 									<option value="">6</option>
 									<option value="">8</option>
-								</select>
+								</select> -->
 								<h5>显示行政区</h5>
 								<select name="" class="show-canton">
 									<option value="0">是</option>
@@ -225,7 +226,7 @@
 							<div class="dvl-activity-code-setting" data-id="2">
 								<textarea name="" id="" cols="30" rows="10"></textarea>
 							</div>
-							<div class="dvl-booking-setting" data-id="3">
+							<div style="display:none;" class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
 								<div class="date">
 									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
@@ -284,9 +285,13 @@
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker9">
 								</div>
+								<h5>边框颜色</h5>
+								<div class="dvl-css-setting-colour">
+									<input type="text" class="picker picker10">
+								</div>
 							</div>
 						</div>
-						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
+						<a onclick="saveActivitySetting(this,false);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="decoratorN-variable variable">
 						<h3>立减/折扣活动不限设置</h3>
@@ -338,12 +343,13 @@
 									<option value="3">佛山</option>
 								</select>
 								<h5>酒店显示数量</h5>
-								<select name="" id="">
+								<input type="text" class="hotel-show-num">
+								<!-- <select name="" id="">
 									<option value="">2</option>
 									<option value="">4</option>
 									<option value="">6</option>
 									<option value="">8</option>
-								</select>
+								</select> -->
 								<h5>显示行政区</h5>
 								<select name="" class="show-canton">
 									<option value="0">是</option>
@@ -376,8 +382,25 @@
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date">
-									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
+								<select onchange="selectDateTime(this)" style="margin-bottom: 10px;">
+									<option value="1">日期设置</option>
+									<option value="2">时分设置</option>
+								</select>
+								<div class="select-date-time">
+									<div class="date" data-type="1">
+										<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
+									</div>
+									<div style="display:none;overflow:hidden;" class="time" data-type="2">
+										<div class="l" style="float:left;">
+											<select style="width:50px;" class="hour" name="" id=""></select>:
+											<select style="width:50px;" class="minute" name="" id=""></select>
+										</div>
+										<em style="float:left;margin:0 20px;">-</em>
+										<div class="r" style="float:left;">
+											<select style="width:50px;" class="hour" name="" id=""></select>:
+											<select style="width:50px;" class="minute" name="" id=""></select>
+										</div>
+									</div>
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -395,7 +418,6 @@
 									<option value="">春节</option>
 									<option value="">元宵夜</option>
 								</select>
-								<a class="btn" href="javascript:;" onclick="discountBookingSetting();">保存</a>
 							</div>
 							<div class="dvl-css-setting" data-id="4">
 								<h5>选择城市按钮颜色</h5>
@@ -422,7 +444,7 @@
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker6">
 								</div>
-								<h5>更多选择按钮颜色</h5>
+								<!-- <h5>更多选择按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker7">
 								</div>
@@ -433,10 +455,10 @@
 								<h5>更多选择字体颜色</h5>
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker9">
-								</div>
+								</div> -->
 							</div>
 						</div>
-						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
+						<a onclick="saveActivitySetting(this,true);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="secondKill-variable variable">
 						<h3>一口价设置</h3>
@@ -444,7 +466,7 @@
 							<li class="on">标题设置</li>
 							<li>专区设置</li>
 							<li>活动码设置</li>
-							<li>预订时间</li>
+							<li style="display:none;">预订时间</li>
 							<li>自定义样式</li>
 						</ul>
 						<div class="tab-content-box secondKill-variable-list">
@@ -488,12 +510,13 @@
 									<option value="3">佛山</option>
 								</select>
 								<h5>酒店显示数量</h5>
-								<select name="" id="">
+								<input type="text" class="hotel-show-num">
+								<!-- <select name="" id="">
 									<option value="">2</option>
 									<option value="">4</option>
 									<option value="">6</option>
 									<option value="">8</option>
-								</select>
+								</select> -->
 								<h5>显示行政区</h5>
 								<select name="" class="show-canton">
 									<option value="0">是</option>
@@ -524,7 +547,7 @@
 							<div class="dvl-activity-code-setting" data-id="2">
 								<textarea name="" id="" cols="30" rows="10"></textarea>
 							</div>
-							<div class="dvl-booking-setting" data-id="3">
+							<div style="display:none;" class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
 								<div class="date">
 									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
@@ -583,9 +606,13 @@
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker9">
 								</div>
+								<h5>边框颜色</h5>
+								<div class="dvl-css-setting-colour">
+									<input type="text" class="picker picker10">
+								</div>
 							</div>
 						</div>
-						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
+						<a onclick="saveActivitySetting(this,false);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="secondKillN-variable variable">
 						<h3>一口价设置不限</h3>
@@ -637,12 +664,13 @@
 									<option value="3">佛山</option>
 								</select>
 								<h5>酒店显示数量</h5>
-								<select name="" id="">
+								<!-- <select name="" id="">
 									<option value="">2</option>
 									<option value="">4</option>
 									<option value="">6</option>
 									<option value="">8</option>
-								</select>
+								</select> -->
+								<input type="text" class="hotel-show-num">
 								<h5>显示行政区</h5>
 								<select name="" class="show-canton">
 									<option value="0">是</option>
@@ -675,8 +703,25 @@
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
-								<div class="date">
-									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
+								<select onchange="selectDateTime(this)" style="margin-bottom: 10px;">
+									<option value="1">日期设置</option>
+									<option value="2">时分设置</option>
+								</select>
+								<div class="select-date-time">
+									<div class="date" data-type="1">
+										<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
+									</div>
+									<div style="display:none;overflow:hidden;" class="time" data-type="2">
+										<div class="l" style="float:left;">
+											<select style="width:50px;" class="hour" name="" id=""></select>:
+											<select style="width:50px;" class="minute" name="" id=""></select>
+										</div>
+										<em style="float:left;margin:0 20px;">-</em>
+										<div class="r" style="float:left;">
+											<select style="width:50px;" class="hour" name="" id=""></select>:
+											<select style="width:50px;" class="minute" name="" id=""></select>
+										</div>
+									</div>
 								</div>
 								<h5>不可预订时间</h5>
 								<div class="week">
@@ -720,7 +765,7 @@
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker6">
 								</div>
-								<h5>更多选择按钮颜色</h5>
+								<!-- <h5>更多选择按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker7">
 								</div>
@@ -731,10 +776,10 @@
 								<h5>更多选择字体颜色</h5>
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker9">
-								</div>
+								</div> -->
 							</div>
 						</div>
-						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
+						<a onclick="saveActivitySetting(this,true);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="themeRoom-variable variable">
 						<h3>主题房设置</h3>
@@ -742,7 +787,7 @@
 							<li class="on">标题设置</li>
 							<li>专区设置</li>
 							<li>活动码设置</li>
-							<li>预订时间</li>
+							<li style="display:none;">预订时间</li>
 							<li>自定义样式</li>
 						</ul>
 						<div class="tab-content-box themeRoom-variable-list">
@@ -786,12 +831,13 @@
 									<option value="3">佛山</option>
 								</select>
 								<h5>酒店显示数量</h5>
-								<select name="" id="">
+								<input type="text" class="hotel-show-num">
+								<!-- <select name="" id="">
 									<option value="">2</option>
 									<option value="">4</option>
 									<option value="">6</option>
 									<option value="">8</option>
-								</select>
+								</select> -->
 								<h5>显示行政区</h5>
 								<select name="" class="show-canton">
 									<option value="0">是</option>
@@ -822,7 +868,7 @@
 							<div class="dvl-activity-code-setting" data-id="2">
 								<textarea name="" id="" cols="30" rows="10"></textarea>
 							</div>
-							<div class="dvl-booking-setting" data-id="3">
+							<div style="display:none;" class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
 								<div class="date">
 									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
@@ -882,9 +928,13 @@
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker9">
 								</div>
+								<h5>边框颜色</h5>
+								<div class="dvl-css-setting-colour">
+									<input type="text" class="picker picker10">
+								</div>
 							</div>
 						</div>
-						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
+						<a onclick="saveActivitySetting(this,false);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="themeRoomN-variable variable">
 						<h3>主题房不限设置</h3>
@@ -936,12 +986,13 @@
 									<option value="3">佛山</option>
 								</select>
 								<h5>酒店显示数量</h5>
-								<select name="" id="">
+								<input type="text" class="hotel-show-num">
+								<!-- <select name="" id="">
 									<option value="">2</option>
 									<option value="">4</option>
 									<option value="">6</option>
 									<option value="">8</option>
-								</select>
+								</select> -->
 								<h5>显示行政区</h5>
 								<select name="" class="show-canton">
 									<option value="0">是</option>
@@ -974,6 +1025,26 @@
 							</div>
 							<div class="dvl-booking-setting" data-id="3">
 								<h5>可预订时间设置</h5>
+								<select onchange="selectDateTime(this)" style="margin-bottom: 10px;">
+									<option value="1">日期设置</option>
+									<option value="2">时分设置</option>
+								</select>
+								<div class="select-date-time">
+									<div class="date" data-type="1">
+										<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
+									</div>
+									<div style="display:none;overflow:hidden;" class="time" data-type="2">
+										<div class="l" style="float:left;">
+											<select style="width:50px;" class="hour" name="" id=""></select>:
+											<select style="width:50px;" class="minute" name="" id=""></select>
+										</div>
+										<em style="float:left;margin:0 20px;">-</em>
+										<div class="r" style="float:left;">
+											<select style="width:50px;" class="hour" name="" id=""></select>:
+											<select style="width:50px;" class="minute" name="" id=""></select>
+										</div>
+									</div>
+								</div>
 								<div class="date">
 									<input class="date-start" type="text"> <em>-</em><input class="date-end" type="text">
 								</div>
@@ -1019,7 +1090,7 @@
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker6">
 								</div>
-								<h5>更多选择按钮颜色</h5>
+								<!-- <h5>更多选择按钮颜色</h5>
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker7">
 								</div>
@@ -1030,10 +1101,10 @@
 								<h5>更多选择字体颜色</h5>
 								<div class="dvl-css-setting-colour">
 									<input type="text" class="picker picker9">
-								</div>
+								</div> -->
 							</div>
 						</div>
-						<a onclick="saveActivitySetting(this);" href="javascript:;" class="btn">保存</a>
+						<a onclick="saveActivitySetting(this,true);" href="javascript:;" class="btn">保存</a>
 					</div>
 					<div class="one-img-variable variable">
 						<h3>一图模块设置</h3>
@@ -1239,6 +1310,27 @@
 		});
 
 
+		function selectDateTime(obj){
+	        var dataType=$(obj).val();
+	        $('.select-date-time>div').hide();
+	        $('.select-date-time>div[data-type="'+dataType+'"]').show();
+		}
+
+		function p(n){
+			return n<10 ? '0'+n : n;
+		}
+
+		var hourHtml='';
+		for(var i=0;i<23;i++){
+			hourHtml+='<option value="">'+p(i)+'</option>';
+		}
+		var minuteHtml=""
+		for(var i=0;i<60;i++){
+			minuteHtml+='<option value="">'+p(i)+'</option>';
+		}
+		$(".select-date-time .time>div .hour").append(hourHtml);
+		$(".select-date-time .time>div .minute").append(minuteHtml);
+		
 
         //有数据之后
 		window.onload=function(){		

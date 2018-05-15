@@ -15,7 +15,8 @@ var editModuleClass = ".page-module > .variable",
 	tabContentClass='.tab-content-box > div',
 	$iframeBody=$iframe.contents().find("body"),
 	$iframeWrapper=$iframe.contents().find(".wrapper"),
-	iframeLength=$iframe.length;
+	iframeLength=$iframe.length,
+	bookingTimeFlag=true;
 
 /**
 *模块 数组 方法
@@ -841,8 +842,8 @@ function shiftDown(obj) {
 
 function edit(editClass,obj){
 	var $moudleParent=$(obj).parent().parent(),
-	    dataId=$moudleParent.attr('data-id'),
-	    currentEditClass=editClass+'[data-id="'+dataId+'"]';
+    dataId=$moudleParent.attr('data-id'),
+    currentEditClass=editClass+'[data-id="'+dataId+'"]';
 	parent.$(editModuleClass).hide();  
 	parent.$(currentEditClass).show();
 
@@ -1010,7 +1011,7 @@ function saveBannerSetting(obj) {
 /**
 *6大列表 标题设置 专区设置 自定义样式 保存
 */
-function saveActivitySetting(obj) {
+function saveActivitySetting(obj,bookingTimeFlag) {
 	var _this=$(obj),
 	    editParent=$(obj).parents('.variable'),
 	    dataId=$(editParent).attr("data-id"),
@@ -1045,6 +1046,7 @@ function saveActivitySetting(obj) {
 		moreSelectBtnColor = $tabContent5.find(".picker7").val(),
 		moreSelectBtnBorderColor = $tabContent5.find(".picker8").val(),
 		moreSelectFontColor = $tabContent5.find(".picker9").val();
+		bigBorderColor = $tabContent5.find(".picker10").val();
 
 	var allPickerColor = $tabContent5.find(".dvl-css-setting-colour");
 	var colorFlag = [].every.call($(allPickerColor), function(item, index) {
@@ -1187,11 +1189,14 @@ function saveActivitySetting(obj) {
 	$moudleWrapper.find(".more a").attr("href", seeMoreSrc);
 
 	//预定时间
-	var dateStart=$tabContent4.find(".date-start").val(),
+	if(bookingTimeFlag){
+		var dateStart=$tabContent4.find(".date-start").val(),
 		dateEnd=$tabContent4.find(".date-end").val();
 
-	$moudleWrapper.find(".start-date").text(dateStart.replace("-", "."));
-	$moudleWrapper.find(".end-date").text(dateEnd.replace("-", "."));
+		$moudleWrapper.find(".start-date").text(dateStart.replace("-", "."));
+		$moudleWrapper.find(".end-date").text(dateEnd.replace("-", "."));
+	}
+	
 
 	//自定义样式设置保存输出
 	$moudleWrapper.find(".city").css({
@@ -1212,14 +1217,18 @@ function saveActivitySetting(obj) {
 	$moudleWrapper.find(".content").css({
 		'background-color': hotelListBgColor
 	});
-	$moudleWrapper.find(".more").css({
-		'background-color': moreSelectBtnColor,
-		'border': '1px solid' + moreSelectBtnBorderColor
-	});
-	$moudleWrapper.find(".more p").css({
-		'color': moreSelectFontColor
-	});
-
+	if(!bookingTimeFlag){
+		$moudleWrapper.find(".more").css({
+			'background-color': moreSelectBtnColor,
+			'border': '1px solid' + moreSelectBtnBorderColor
+		});
+		$moudleWrapper.find(".more p").css({
+			'color': moreSelectFontColor
+		});
+		$moudleWrapper.find(".content").css({
+			'border': '1px solid' + bigBorderColor
+		});
+	}
 	setHeight();
 }
 /**
