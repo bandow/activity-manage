@@ -231,6 +231,50 @@ input {
      object-fit: cover;
 }
 
+.container .upload-img .add-img > div, .container .upload-img-big .add-img > div {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  z-index: 1;
+  background: red;
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.container .upload-img .add-img > div > a, .container .upload-img-big .add-img > div > a {
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  line-height: 0;
+  font-size: 0;
+  vertical-align: middle;
+  -webkit-transform: rotate(45deg);
+}
+
+.container .upload-img .add-img > div > a:after, .container .upload-img-big .add-img > div > a:after {
+  content: '/';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  -webkit-transform: rotate(-90deg);
+}
+
 .container .upload-img-big {
   width: 100%;
 }

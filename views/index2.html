@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../styles/css/index.css">
+	<style>
+		.search-city-box{
+			width:140px;
+			height:26px;
+		}
+		.search-city-box .search-city-input{
+			width:100%;
+			height:26px;
+			background:none;
+			border:none;
+			outline:none;
+			border:1px solid #ddd;
+		}
+		.search-city-box>div{
+			width:140px;
+			position:absolute;
+			top:31px;
+			background-color:#fff;
+		}
+		.search-city-box>div ul{
+			border:1px solid #ddd;
+		}
+		.search-city-box>div ul li{
+			border-bottom:1px solid #ddd;
+			cursor:pointer;
+		}
+		.search-city-box>div ul li:last-child{
+			border-bottom:0;
+		}
+	</style>
+</head>
+<body>
+	<div class="search-city-box">
+		<input type="text" class="search-city-input">
+		<div class="search-city-list"></div>
+	</div>
+	<script src="../plugins/jquery/jquery-3.1.1.min.js"></script>
+	<script>
+		var array=[
+			{
+				cid:4,
+				name:"南宁",
+				description:null,
+				pinyin:"nanning",
+				jianpin:"NN",
+				type:0,
+				parent_id:0,
+				ordernum:1,
+				ProvinceID:20,
+				CityID:218,
+				AreaID:null
+			},
+			{
+				cid:5,
+				name:"桂林",
+				description:null,
+				pinyin:"gueilin",
+				jianpin:"NN",
+				type:0,
+				parent_id:0,
+				ordernum:1,
+				ProvinceID:20,
+				CityID:218,
+				AreaID:null
+			},
+			{
+				cid:5,
+				name:"广州",
+				description:null,
+				pinyin:"guangzhou",
+				jianpin:"NN",
+				type:0,
+				parent_id:0,
+				ordernum:1,
+				ProvinceID:20,
+				CityID:218,
+				AreaID:null
+			},
+			{
+				cid:5,
+				name:"广西",
+				description:null,
+				pinyin:"guangxi",
+				jianpin:"NN",
+				type:0,
+				parent_id:0,
+				ordernum:1,
+				ProvinceID:20,
+				CityID:218,
+				AreaID:null
+			}
+		];
+		$("body").on("keyup",".search-city-input",function(){
+			$(this).next().show();
+			var searchResultArr=[];
+			var keyword=$(this).val();
+			console.log(keyword);
+			if(keyword==''){
+				$(this).next().hide();
+			}
+			for(var i=0; array.length>i; i++){
+				if(array[i].name.indexOf(keyword)>=0 || array[i].pinyin.toLowerCase().indexOf(keyword.toLowerCase())==0 ){
+					searchResultArr.push(array[i]);
+				}
+			}
+			appendSearchData(searchResultArr);
+		});
+		$("body").on("click",".search-city-list ul li",function(){
+			$(".search-city-input").val($(this).text());
+			$(".search-city-input").attr("cid", $(this).attr("data-parent-id"))
+			$(".search-city-list").hide();
+		})
+		function appendSearchData(arr){
+			var html=''
+			    $searchList=$('.search-city-list');
+			$searchList.html('');    
+			html+='<ul>';
+			arr.forEach(function(item){
+				html+='<li data-parent-id='+item.CityID+'>'+item.name+'</li>';
+			});
+			html+='</ul>';
+			$searchList.append(html);
+		}
+	</script>
+</body>
+</html>
+

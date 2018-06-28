@@ -89,7 +89,15 @@ function preview(file, maxSize) {
 		var reader = new FileReader();
 		reader.onload = function(evt) {
 			// console.log(file.nextElementSibling);
+			// <div><a href="javascript:;"></a></div>
 			file.nextElementSibling.innerHTML = '<img src="' + evt.target.result + '" />';
+			var divEle=document.createElement('DIV');
+			divEle.innerHTML='<a href="javascript:;"></a>';
+			file.nextElementSibling.appendChild(divEle);
+
+			divEle.onclick=function(){
+				divEle.parentNode.removeChild(divEle.parentNode.children[0]);
+			}
 			// $(file).parent().append('<img src="' + evt.target.result + '" />')
 		}
 		reader.readAsDataURL(file.files[0]);
@@ -200,8 +208,26 @@ function copyEditBox(classString,dataId,copyFlag){
 				dateEnd.val(s2);
 			}
 		});		
-	}	
+	}
 
+	/**
+	*规则设置 文本编辑器
+	*/
+	var E = window.wangEditor;
+	if(isIframe()==true){
+		var editorObj='.newruleText';
+	}else{
+		var editorObj='.variable[data-id="'+dataId+'"] .newruleText';
+	}	
+	var editor = new E(editorObj);
+	editor.customConfig.menus = [
+        'bold',
+        'italic',
+        'underline',
+        'foreColor',  
+   		'backColor'
+    ]
+	editor.create();	
 }
 
 /**
